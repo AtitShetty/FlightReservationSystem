@@ -1,0 +1,29 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# An example controller showing a sample home page
+GET     /                           			controllers.HomeController.index
+
+GET		/trips									controllers.HomeController.getTrips
+
+GET		/trips/:tripID							controllers.HomeController.getSegments(tripID: String)
+
+GET 	/operators								controllers.HomeController.getOperators
+
+GET 	/operators/:operator/flights			controllers.HomeController.getFlights(operator: String)
+
+GET		/operators/:operator/flights/:flight	controllers.HomeController.getAvailableSeats(operator: String, flight: String)
+
+POST 	/trip/:from/:to							controllers.HomeController.reserveSeats(from: String, to: String)
+
+POST 	/actor/:airline/confirm_fail			controllers.HomeController.setDebugFlagConfirmFail(airline: String)
+
+POST 	/actor/:airline/confirm_no_response		controllers.HomeController.setDebugFlagConfirmNoResponse(airline: String)
+
+POST	/actor/:airline/reset					controllers.HomeController.resetDebugFlags(airline: String)
+
+GET		/reset									controllers.HomeController.resetEverything
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
